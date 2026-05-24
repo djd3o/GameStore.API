@@ -4,10 +4,19 @@ GET http://localhost:5293/games/1
 ###
 POST http://localhost:5293/games/
 Content-Type: application/json
-
 {
   "name": "The Legend of Zelda: Breath of the Wild",
   "genre": "Action-adventure",
   "price": 59.99,
-  "releaseDate": "2017-03-03",
+  "releaseDate": "2017-03-03"
+}
+###
+PUT http://localhost:5293/games/1
+Content-Type: application/json
+
+{
+  "name": "The Legend of Zelda: Ocarina of Time",
+  "genre": "Action-adventure",
+  "price": 19.99,
+  "releaseDate": "2017-03-03"
 }

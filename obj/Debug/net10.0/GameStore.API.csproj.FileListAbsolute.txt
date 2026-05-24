@@ -26,3 +26,4 @@
 /Users/amadeo/Library/CloudStorage/Dropbox/coding/ASP.NET REST API/GameStore.API/obj/Debug/net10.0/GameStore.API.pdb
 /Users/amadeo/Library/CloudStorage/Dropbox/coding/ASP.NET REST API/GameStore.API/obj/Debug/net10.0/GameStore.API.genruntimeconfig.cache
 /Users/amadeo/Library/CloudStorage/Dropbox/coding/ASP.NET REST API/GameStore.API/obj/Debug/net10.0/ref/GameStore.API.dll
+/Users/amadeo/Library/CloudStorage/Dropbox/coding/ASP.NET REST API/GameStore.API/obj/Debug/net10.0/GameStore.API.sourcelink.json

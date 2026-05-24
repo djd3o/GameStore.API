@@ -1,13 +1,14 @@
 GET http://localhost:5293/games
 ###
-GET http://localhost:5293/games/20
+GET http://localhost:5293/games/2
 ###
 POST http://localhost:5293/games/
 Content-Type: application/json
+
 {
-  "name": "The Legend of Zelda: Breath of the Wild",
+  "name": "A game has no name",
   "genre": "Action-adventure",
-  "price": 59.99,
+  "price": 200,
   "releaseDate": "2017-03-03"
 }
 ###

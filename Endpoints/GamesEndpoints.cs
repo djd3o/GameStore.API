@@ -2,6 +2,7 @@ using System;
 using GameStore.API.Data;
 using GameStore.API.Dtos;
 using GameStore.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GameStore.API.Endpoints
 {
@@ -16,22 +17,43 @@ namespace GameStore.API.Endpoints
             new GameDto(5, "Cyberpunk 2077", "RPG", 59.99m, new DateOnly(2020, 12, 10))
         ];
 
+
         public static void MapGameEndpoints(this WebApplication app)
         {
             var group = app.MapGroup("/games");
             // GET: /games
-            group.MapGet("/", () => games);
+            group.MapGet("/", async (GameStoreContext dbContext)
+                => await dbContext.Games
+                            .Include(game => game.Genre)
+                            .Select(game => new GameDto(
+                                game.Id,
+                                game.Name,
+                                game.Genre!.Name,
+                                game.Price,
+                                game.ReleaseDate
+                            ))
+                            .AsNoTracking()
+                            .ToListAsync());
 
             //Get /games/1
-            group.MapGet("/{id}", (int id) =>
+            group.MapGet("/{id}", async (int id, GameStoreContext dbContext) =>
             {
-                var game = games.Find(game => game.Id == id);
-                return game is null ? Results.NotFound() : Results.Ok(games);
+                var game = await dbContext.Games.FindAsync(id);
+                return game is null ? Results.NotFound() : Results.Ok(
+                    new GameDetailsDto(
+                        game.Id,
+                        game.Name,
+                        game.GenreId,
+                        game.Price,
+                        game.ReleaseDate
+                    
+                    )
+                );
             })
             .WithName(GetGameEndpointName);
 
             //POST /games
-            group.MapPost("/", (CreateGameDto newGame, GameStoreContext dbContext) =>
+            group.MapPost("/", async (CreateGameDto newGame, GameStoreContext dbContext) =>
             {
                 Game game = new()
                 {
@@ -42,7 +64,7 @@ namespace GameStore.API.Endpoints
                 };
 
                 dbContext.Games.Add(game);
-                dbContext.SaveChanges();
+                await dbContext.SaveChangesAsync();
 
                 GameDetailsDto gameDto = new(
                     game.Id,

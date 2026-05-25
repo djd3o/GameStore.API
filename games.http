@@ -1,15 +1,15 @@
 GET http://localhost:5293/games
 ###
-GET http://localhost:5293/games/2
+GET http://localhost:5293/games/1
 ###
 POST http://localhost:5293/games/
 Content-Type: application/json
 
 {
-  "name": "A game has no name",
-  "genreId": 3,
-  "price": 59.99,
-  "releaseDate": "2017-03-03"
+  "name": "Streeet FIghter II",
+  "genreId": 1,
+  "price": 9.99,
+  "releaseDate": "1991-02-01"
 }
 ###
 PUT http://localhost:5293/games/1
@@ -22,4 +22,4 @@ Content-Type: application/json
   "releaseDate": "2017-03-03"
 }
 ###
-DELETE http://localhost:5293/games/1
+DELETE http://localhost:5293/games/3

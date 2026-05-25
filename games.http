@@ -17,7 +17,7 @@ Content-Type: application/json
 
 {
   "name": "Super Smash Bros. Ultimate",
-  "genreId": 2,
+  "genreId": 1,
   "price": 19.99,
   "releaseDate": "2017-03-03"
 }
